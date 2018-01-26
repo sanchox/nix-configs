@@ -67,6 +67,7 @@ fi
 parse_git_branch() {
  git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
 }
+
 if [ "$color_prompt" = yes ]; then
     PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[01;31m\]$(parse_git_branch)\[\033[00m\]\$ '
 else
@@ -101,7 +102,7 @@ fi
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
 # some more ls aliases
-alias ll='ls -alF'
+alias ll='ls -alFh'
 alias la='ls -A'
 alias l='ls -CF'
 
@@ -133,12 +134,12 @@ fi
 export PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND$'\n'}history -a; history -c; history -r"
 
 #export ARM_NONE_EABI_TOOLCHAIN_PATH=/usr
-export ARM_NONE_EABI_TOOLCHAIN_PATH=/home/sanchox/gcc-arm-none-eabi-6-2017-q2-update
-export CXXTEST_INSTALL_DIR=/home/sanchox/cxxtest
+#export ARM_NONE_EABI_TOOLCHAIN_PATH=/home/sanchox/gcc-arm-none-eabi-6-2017-q2-update
+#export CXXTEST_INSTALL_DIR=/home/sanchox/cxxtest
 
 PATH=~/eclipse/cpp-oxygen/eclipse:$PATH
 
-PATH=~/JLink_Linux_V478k_x86_64:$PATH
+#PATH=~/JLink_Linux_V478k_x86_64:$PATH
 
 export GPG_TTY=$(tty)
 
@@ -154,9 +155,11 @@ complete -o default -F _pip_completion pip
 
 export IDF_PATH="/home/sanchox/esp/esp-idf"
 #export PATH="$PATH:$HOME/esp/xtensa-esp32-elf/bin"
+
 #export LM_LICENSE_FILE=$LM_LICENSE_FILE:/license_directory>/license.dat
 export PATH="$PATH:/usr/local/diamond/3.10_x64/bin/lin64"
 
-function get_sdadow {
+function get_shadow {
 	python3 -c "import crypt; print(crypt.crypt('$1'))"
 }
+
